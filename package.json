@@ -1,0 +1,33 @@
+{
+    "name": "opus",
+    "description": "A fully customizable programmatic document processing system",
+    "version": "0.1.0",
+    "author": "Quantalabs",
+    "license": "GPL-3.0-or-later",
+    "main": "./dist/index.js",
+    "packageManager": "yarn@3.6.1",
+    "engines": {
+        "node": ">=16.8.0",
+        "yarn": "^3.6.1"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.5",
+        "@commitlint/config-conventional": "^17.6.5",
+        "@vercel/ncc": "^0.36.1",
+        "eslint": "^8.2.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-import": "^2.25.2",
+        "husky": "^8.0.3",
+        "prettier": "2.8.8",
+        "typescript": "^5.1.6"
+    },
+    "scripts": {
+        "prepare": "husky install",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format:check": "prettier --check .",
+        "format:fix": "prettier --write .",
+        "postinstall": "husky install",
+        "build": "yarn tsc -p tsconfig.json && yarn ncc build dist/ts/index.js -o dist"
+    }
+}
