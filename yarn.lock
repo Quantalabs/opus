@@ -898,6 +898,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "commander@npm:11.0.0"
+  checksum: 6621954e1e1d078b4991c1f5bbd9439ad37aa7768d6ab4842de1dbd4d222c8a27e1b8e62108b3a92988614af45031d5bb2a2aaa92951f4d0c934d1a1ac564bb4
+  languageName: node
+  linkType: hard
+
 "compare-func@npm:^2.0.0":
   version: 2.0.0
   resolution: "compare-func@npm:2.0.0"
@@ -2858,12 +2865,15 @@ __metadata:
     "@commitlint/cli": ^17.6.5
     "@commitlint/config-conventional": ^17.6.5
     "@vercel/ncc": ^0.36.1
+    commander: ^11.0.0
     eslint: ^8.2.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-import: ^2.25.2
     husky: ^8.0.3
     prettier: 3.0.1
     typescript: ^5.1.6
+  bin:
+    opus: ./dist/index.js
   languageName: unknown
   linkType: soft
 

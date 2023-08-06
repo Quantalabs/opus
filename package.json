@@ -5,6 +5,7 @@
     "author": "Quantalabs",
     "license": "GPL-3.0-or-later",
     "main": "./dist/index.js",
+    "bin": "./dist/index.js",
     "packageManager": "yarn@3.6.1",
     "engines": {
         "node": ">=16.8.0",
@@ -28,6 +29,10 @@
         "format:check": "prettier --check .",
         "format:fix": "prettier --write .",
         "postinstall": "husky install",
-        "build": "yarn ncc build opus/index.ts -m -o dist -s"
+        "build": "yarn ncc build opus/index.ts -m -o dist -s",
+        "watch": "yarn ncc build opus/index.ts -m -o dist -s -w"
+    },
+    "dependencies": {
+        "commander": "^11.0.0"
     }
 }
