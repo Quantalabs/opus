@@ -1,6 +1,7 @@
 import chalk from "chalk"
 import { jsPDF } from "jspdf"
-import convert from "convert-units"
+import funcs from "./funcs"
+import { toMM } from "./utils"
 
 function createDocument(element: Object): Object {
     if (element["content"] != "") {
@@ -52,12 +53,6 @@ function createDocument(element: Object): Object {
     return element
 }
 
-function toMM(length: string): number {
-    let value = parseFloat(length)
-    let unit = length.replace(value.toString(), "")
-    return convert(value).from(unit).to("mm")
-}
-
 function generatePDF(input: Object[]): jsPDF {
     let meta: {
         name: string
@@ -95,13 +90,40 @@ function generatePDF(input: Object[]): jsPDF {
         numXPos: null,
         numYPos: null
     }
-    let currentPage = {
-        options: {},
-        content: ""
+    let currentPage: {
+        options: {
+            width: string
+            length: string
+            orientation: "portrait" | "landscape" | "p" | "l"
+            color: string
+            numberPage: boolean
+            numXPos: number
+            numYPos: number
+        }
+        content: string[]
+    } = {
+        options: {
+            width: "297mm",
+            length: "210mm",
+            orientation: "portrait",
+            color: "#FFFFFF",
+            numberPage: false,
+            numXPos: null,
+            numYPos: null
+        },
+        content: []
     }
     let pages: {
-        options: { [key: string]: string }
-        content: string
+        options: {
+            width: string
+            length: string
+            orientation: "portrait" | "landscape" | "p" | "l"
+            color: string
+            numberPage: boolean
+            numXPos: number
+            numYPos: number
+        }
+        content: string[]
     }[] = []
 
     const docOptions = createDocument(input[1])["options"]
@@ -182,6 +204,8 @@ function generatePDF(input: Object[]): jsPDF {
                     )
                 }
                 break
+            case "text":
+                funcs.text(doc, element)
         }
     }
     return doc
