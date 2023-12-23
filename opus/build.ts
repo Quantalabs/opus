@@ -40,9 +40,11 @@ function createDocument(element: Object): Object {
     }
 
     if (
-        element["options"]["orientation"] != "portrait" &&
-        element["options"]["orientation"] != "landscape"
+        !["portrait", "landscape", "p", "l"].includes(
+            element["options"]["orientation"]
+        )
     ) {
+        console.log(element)
         console.warn(
             chalk.yellow(
                 "Warning: document orientation is not valid. It will be set to default (portrait)."
@@ -126,7 +128,7 @@ function generatePDF(input: Object[]): jsPDF {
         content: string[]
     }[] = []
 
-    const docOptions = createDocument(input[1])["options"]
+    const docOptions = createDocument(input[0])["options"]
     for (let key in docOptions) {
         document[key] = docOptions[key]
     }
@@ -204,8 +206,12 @@ function generatePDF(input: Object[]): jsPDF {
                     )
                 }
                 break
+            case "image":
+                funcs.image(doc, element)
+                break
             case "text":
                 funcs.text(doc, element)
+                break
         }
     }
     return doc
