@@ -19,22 +19,33 @@ function text(doc: jsPDF, element: Object): jsPDF {
     let fontSize = element["options"]["fontSize"]
         ? element["options"]["fontSize"]
         : 12
+    let font = element["options"]["font"]
+        ? element["options"]["font"]
+        : "helvetica"
+    let width = element["options"]["width"]
+        ? toMM(element["options"]["width"])
+        : 0
+    let lineHeight = element["options"]["lineHeight"]
+        ? Number(element["options"]["lineHeight"])
+        : 1.15
 
     doc.setFontSize(fontSize)
+    doc.setFont(font)
     return doc.text(
         element["content"],
         toMM(element["options"]["x"]),
-        toMM(element["options"]["y"])
+        toMM(element["options"]["y"]),
+        {
+            maxWidth: width,
+            lineHeightFactor: lineHeight
+        }
     )
 }
 
 function image(doc: jsPDF, element: Object): jsPDF {
-    // Add image to the page at the specified position
-    const dpi = element["options"]["dpi"] ? element["options"]["dpi"] : 96
-
     const dim = [
-        (Number(element["options"]["width"]) / dpi) * 25.4,
-        Number(element["options"]["height"] / dpi) * 25.4
+        toMM(element["options"]["width"]),
+        toMM(element["options"]["height"])
     ]
 
     return doc.addImage(
@@ -52,7 +63,21 @@ function image(doc: jsPDF, element: Object): jsPDF {
     )
 }
 
+function font(doc: jsPDF, element: Object): jsPDF {
+    // Load the *.ttf file as a base64 string
+    const fontData = fs.readFileSync(element["options"]["source"], "base64")
+
+    doc.addFileToVFS(element["options"]["source"], fontData)
+    doc.addFont(
+        element["options"]["source"],
+        element["options"]["name"],
+        "normal"
+    )
+    return doc
+}
+
 export default {
     text,
-    image
+    image,
+    font
 }

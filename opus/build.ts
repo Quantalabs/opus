@@ -194,9 +194,9 @@ function generatePDF(input: Object[]): jsPDF {
                         ? element["options"][key]
                         : document[key]
                 }
+                pages.push(currentPage)
 
                 if (!firstPage) {
-                    pages.push(currentPage)
                     doc.addPage(
                         [
                             toMM(currentPage["options"]["width"]),
@@ -205,12 +205,24 @@ function generatePDF(input: Object[]): jsPDF {
                         currentPage["options"]["orientation"]
                     )
                 }
+                // Draw rectangle over page with specified color
+                doc.setFillColor(currentPage["options"]["color"])
+                doc.rect(
+                    0,
+                    0,
+                    toMM(currentPage["options"]["width"]),
+                    toMM(currentPage["options"]["length"]),
+                    "F"
+                )
                 break
             case "image":
                 funcs.image(doc, element)
                 break
             case "text":
                 funcs.text(doc, element)
+                break
+            case "font":
+                funcs.font(doc, element)
                 break
         }
     }
