@@ -68,12 +68,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:^18.4.3":
-  version: 18.4.3
-  resolution: "@commitlint/config-conventional@npm:18.4.3"
+"@commitlint/config-conventional@npm:^18.6.2":
+  version: 18.6.2
+  resolution: "@commitlint/config-conventional@npm:18.6.2"
   dependencies:
+    "@commitlint/types": ^18.6.1
     conventional-changelog-conventionalcommits: ^7.0.2
-  checksum: bb6c1559979002e79c5e7c575f57fd713638523cdadfa61754eaabb8aad042d688c859e82ccf58589bb9aa2a4497e820702744095c9b82f6018fbb3b5d75d08d
+  checksum: 139453f333d9a36cafff33aca9a52c06e308fc2e86d044f22756054f424b19d5871c559be3df8468df2d8901221e3b9f3b7e3ea23b9b06c8dc35b591d93caa84
   languageName: node
   linkType: hard
 
@@ -240,6 +241,15 @@ __metadata:
   dependencies:
     chalk: ^4.1.0
   checksum: 52dfc0ee835f3030fff25e45b4568e83eef818126a30f60860637c74de4919c5f9f1eab157622bb70facf9483f07898cfcb47efa484caf6443dd866942e460ec
+  languageName: node
+  linkType: hard
+
+"@commitlint/types@npm:^18.6.1":
+  version: 18.6.1
+  resolution: "@commitlint/types@npm:18.6.1"
+  dependencies:
+    chalk: ^4.1.0
+  checksum: fb37bdefd25e05e353eb568b26a7dd5aff488f1e3fbfc42080bde49ae6834ffde996acac4b7767df650b38e03692889b636b8290465823cd27276662d3b471cf
   languageName: node
   linkType: hard
 
@@ -3181,7 +3191,7 @@ __metadata:
   resolution: "opus@workspace:."
   dependencies:
     "@commitlint/cli": ^18.4.3
-    "@commitlint/config-conventional": ^18.4.3
+    "@commitlint/config-conventional": ^18.6.2
     "@vercel/ncc": ^0.38.1
     chalk: ^5.3.0
     commander: ^11.1.0
