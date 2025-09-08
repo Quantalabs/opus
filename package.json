@@ -36,6 +36,6 @@
         "chalk": "^5.4.1",
         "commander": "^14.0.0",
         "convert-units": "^2.3.4",
-        "jspdf": "^3.0.1"
+        "jspdf": "^3.0.2"
     }
 }
